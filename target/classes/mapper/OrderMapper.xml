@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- namespace就等于mapper的接口地址 -->
+<mapper namespace="com.lkj.dao.OrderDao">
+  <!-- 目的：为dao接口方法提供sql语句配置 -->
+   <insert id="createOrder" parameterType="com.lkj.entity.Order">
+	    INSERT INTO orderitem(`orderId`,`orderStatus`,`orderCreateTime`,`userId`,`disposalId`)
+	    VALUES(#{orderId},#{orderStatus}, #{orderCreateTime,jdbcType=TIMESTAMP},#{userId},#{disposalId})
+	</insert>
+  
+  	<select id="queryById" parameterType="string" resultType="com.lkj.entity.Order">
+        select * from orderitem where orderId = #{orderId}
+    </select>
+    <select id="queryByUserId" parameterType="string" resultType="com.lkj.entity.Order">
+        select * from orderitem where userId = #{userId} ORDER BY orderCreateTime
+    </select>
+</mapper>

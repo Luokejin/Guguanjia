@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- namespace就等于mapper的接口地址 -->
+<mapper namespace="com.lkj.dao.CompanyDao">
+  <!-- 目的：为dao接口方法提供sql语句配置 -->
+   <select id="queryAll" resultType="com.lkj.entity.Company">
+    SELECT
+    companyId,
+    companyProcessAbility,
+    companyPower,
+    companyIntroduction,
+    companyCallnum,
+    companyName
+    FROM
+    company
+    ORDER BY
+    companyId
+    LIMIT #{offset}, #{limit}
+  </select>
+  
+  <select id="queryById" parameterType="int" resultType="com.lkj.entity.Company">
+    SELECT * FROM company where companyId = #{companyId}
+    
+  </select>
+</mapper>
